@@ -8,15 +8,11 @@
 
 class CWebApplication
 {
-//    public $name;
-//    public $defaultController = "index";
-//    public $defaultAction = "index";
 
     private static $_app;
 
     private function __construct($config=null){
         //获取配置文件
-//        $config = require $_SERVER['DOCUMENT_ROOT']."/config/main.php";
         if(is_string($config));
             $config = require $config;
 

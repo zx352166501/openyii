@@ -12,7 +12,7 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/models/Article.php";
 
 class IndexController extends CController
 {
-
+     public $layouts = 'main';
     /**
      * 首页
      */
@@ -20,10 +20,13 @@ class IndexController extends CController
 
         $article = new Article();
         $findRes = $article ->find();
-        $this ->render('index/index',array('result'=>$findRes));
+        return $this ->render('index/index',array('result'=>$findRes));
 
     }
 
+    /**
+     * 列表页
+     */
     public function actionList(){
 
         $data = array(
