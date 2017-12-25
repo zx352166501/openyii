@@ -5,7 +5,9 @@
  * Date: 2017/12/20
  * Time: 9:27
  */
+namespace frame\CModel;
 
+use PDO;
 
 class CModel
 {
@@ -14,7 +16,7 @@ class CModel
 
     public  function __construct(){
         //获取配置文件
-        $config = require $_SERVER['DOCUMENT_ROOT']."/config/db.php";
+        $config = require $_SERVER['DOCUMENT_ROOT']."/../config/db.php";
 
         foreach ($config as $key =>$val){
             $this ->$key = $val;

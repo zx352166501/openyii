@@ -6,9 +6,13 @@
  * Time: 10:04
  */
 
-//require $_SERVER['DOCUMENT_ROOT']."/framework/CController.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/models/Article.php";
 
+namespace frame\modules\controllers;
+
+require $_SERVER['DOCUMENT_ROOT']."/../modules/models/Article.php";
+
+use frame\CController\CController;
+use frame\modules\models\Article;
 
 class IndexController extends CController
 {

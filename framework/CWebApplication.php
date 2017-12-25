@@ -6,9 +6,11 @@
  * Time: 15:13
  */
 
+namespace frame\CWebApplication;
+use frame\modules\controllers;
+
 class CWebApplication
 {
-
     private static $_app;
 
     private function __construct($config=null){
@@ -50,35 +52,7 @@ class CWebApplication
         if(!empty($_GET['r'])){
 
             $route = $_GET['r'];
-
             self::commonSite($route);
-//            $pos = strpos($route,'/');   // 查找字符串在另一字符串中第一次出现的位置
-//
-//            $defaultController = substr($route,0,$pos);
-//            $defaultController = strtolower($defaultController); //  把所有字符转换为小写
-//            $defaultAction = (string) substr($route,$pos+1);
-//
-//            $className = ucfirst($defaultController)."Controller";      // 函数把字符串中的首字符转换为大写
-//            $classFile = $_SERVER['DOCUMENT_ROOT']."/modules/controllers/".$className.".php";
-//
-//            if(is_file($classFile)){
-//
-//                if(!class_exists($className,false)){
-//
-//                    require $classFile;
-//                    $class = new $className;
-//                    $functionName = "action".ucfirst($defaultAction);
-//
-//                    $class ->$functionName();
-//                }
-//
-//            }else{
-//
-//                // todo 错误页面
-//                echo  "dir error";
-////                $this::defaultSite();
-//
-//            }
 
         }else{
             $this::defaultSite();
@@ -101,13 +75,15 @@ class CWebApplication
         $defaultAction = (string) substr($route,$pos+1);
 
         $className = ucfirst($defaultController)."Controller";      // 函数把字符串中的首字符转换为大写
-        $classFile = $_SERVER['DOCUMENT_ROOT']."/modules/controllers/".$className.".php";
+        $classFile = $_SERVER['DOCUMENT_ROOT']."/../modules/controllers/".$className.".php";
 
         if(is_file($classFile)){
 
             if(!class_exists($className,false)){
 
                 require $classFile;
+
+                $className = "frame\\modules\\controllers\\".$className;
                 $class = new $className;
                 $functionName = "action".ucfirst($defaultAction);
 
@@ -128,6 +104,49 @@ class CWebApplication
         }
 
     }
+
+
+//    /**
+//     * 站点跳转方法
+//     * @param $route
+//     */
+//    private static function commonSite($route){
+//
+//        header("Content-type: text/html; charset=utf-8");
+//        $pos = strpos($route,'/');   // 查找字符串在另一字符串中第一次出现的位置
+//
+//        $defaultController = substr($route,0,$pos);
+//        $defaultController = strtolower($defaultController); //  把所有字符转换为小写
+//        $defaultAction = (string) substr($route,$pos+1);
+//
+//        $className = ucfirst($defaultController)."Controller";      // 函数把字符串中的首字符转换为大写
+//        $classFile = $_SERVER['DOCUMENT_ROOT']."/modules/controllers/".$className.".php";
+//
+//        if(is_file($classFile)){
+//
+//            if(!class_exists($className,false)){
+//
+//                require $classFile;
+//                $class = new $className;
+//                $functionName = "action".ucfirst($defaultAction);
+//
+//                if(!method_exists($class,$functionName)){
+//                    echo '未定义'.$functionName.'方法！';
+//
+//                }else{
+//                    $class ->$functionName();
+//                }
+//
+//
+//            }
+//
+//        }else{
+//
+//            self::commonSite("index/error");
+//
+//        }
+//
+//    }
 
 
     /**
