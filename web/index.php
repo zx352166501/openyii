@@ -6,10 +6,10 @@
  * Time: 10:08
  */
 
-require $_SERVER['DOCUMENT_ROOT'] . "/../framework/CWebApplication.php";
-require $_SERVER['DOCUMENT_ROOT'] . "/../framework/autoload.php";
+require __DIR__ . "/../framework/CWebApplication.php";
+require __DIR__. "/../framework/autoload.php";
 
-$config = $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
+$config = __DIR__ . "/../config/main.php";
 
 $app = \openyii\framework\CWebApplication::createApplication($config);
 spl_autoload_register(array('Autoload', 'loadClass'));

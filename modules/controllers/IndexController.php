@@ -15,7 +15,7 @@ use openyii\modules\models\IndexModels;
 
 class IndexController extends CController
 {
-     public $layouts = 'main';
+     public $layouts = "main";
     /**
      * 首页
      */

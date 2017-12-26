@@ -75,7 +75,7 @@ class CWebApplication
         $defaultAction = (string) substr($route,$pos+1);
 
         $className = ucfirst($defaultController)."Controller";      // 函数把字符串中的首字符转换为大写
-        $classFile = $_SERVER['DOCUMENT_ROOT']."/../modules/controllers/".$className.".php";
+        $classFile = __DIR__."/../modules/controllers/".$className.".php";
 
         if(is_file($classFile)){
 
@@ -118,7 +118,7 @@ class CWebApplication
 //        $defaultAction = (string) substr($route,$pos+1);
 //
 //        $className = ucfirst($defaultController)."Controller";      // 函数把字符串中的首字符转换为大写
-//        $classFile = $_SERVER['DOCUMENT_ROOT']."/modules/controllers/".$className.".php";
+//        $classFile = __DIR__."/modules/controllers/".$className.".php";
 //
 //        if(is_file($classFile)){
 //

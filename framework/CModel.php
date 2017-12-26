@@ -16,7 +16,7 @@ class CModel
 
     public  function __construct(){
         //获取配置文件
-        $config = require $_SERVER['DOCUMENT_ROOT']."/../config/db.php";
+        $config = require __DIR__."/../config/db.php";
 
         foreach ($config as $key =>$val){
             $this ->$key = $val;

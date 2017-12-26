@@ -14,7 +14,7 @@ class Autoload
     {
 
         $file = $class . '.php';
-        $file = str_replace("openyii",$_SERVER['DOCUMENT_ROOT'] ."\..",$file);
+        $file = str_replace("openyii",__DIR__ ."\..",$file);
 
         if (is_file($file)) {
             require_once($file);
