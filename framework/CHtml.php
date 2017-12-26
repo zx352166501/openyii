@@ -5,7 +5,7 @@
  * Date: 2017/12/20
  * Time: 13:47
  */
-namespace frame\framework;
+namespace openyii\framework;
 
 class CHtml
 {

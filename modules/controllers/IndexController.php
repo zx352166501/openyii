@@ -7,11 +7,11 @@
  */
 
 
-namespace frame\modules\controllers;
+namespace openyii\modules\controllers;
 
-use frame\framework\CController;
-use frame\modules\models\Article;
-use frame\modules\models\IndexModels;
+use openyii\framework\CController;
+use openyii\modules\models\Article;
+use openyii\modules\models\IndexModels;
 
 class IndexController extends CController
 {

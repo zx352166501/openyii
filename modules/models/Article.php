@@ -5,9 +5,9 @@
  * Date: 2017/12/18
  * Time: 10:05
  */
-namespace frame\modules\models;
+namespace openyii\modules\models;
 
-use frame\framework\CModel;
+use openyii\framework\CModel;
 
 class Article extends CModel
 {

@@ -5,7 +5,7 @@
  * Date: 2017/12/18
  * Time: 9:58
  */
-namespace frame\framework;
+namespace openyii\framework;
 
 class CController {
 

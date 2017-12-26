@@ -6,8 +6,8 @@
  * Time: 15:13
  */
 
-namespace frame\framework;
-use frame\modules\controllers;
+namespace openyii\framework;
+use openyii\modules\controllers;
 
 class CWebApplication
 {
@@ -83,7 +83,7 @@ class CWebApplication
 
                 require $classFile;
 
-                $className = "frame\\modules\\controllers\\".$className;
+                $className = "openyii\\modules\\controllers\\".$className;
                 $class = new $className;
                 $functionName = "action".ucfirst($defaultAction);
 

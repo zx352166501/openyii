@@ -6,9 +6,9 @@
  * Time: 11:28
  */
 
-namespace frame\modules\models;
+namespace openyii\modules\models;
 
-use frame\framework\CModel;
+use openyii\framework\CModel;
 
 class IndexModels extends CModel
 {

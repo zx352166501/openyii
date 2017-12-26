@@ -5,7 +5,7 @@
  * Date: 2017/12/20
  * Time: 9:27
  */
-namespace frame\framework;
+namespace openyii\framework;
 
 use PDO;
 

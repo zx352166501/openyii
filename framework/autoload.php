@@ -2,19 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: zhangxin
- * Date: 2017/12/25
- * Time: 11:56
+ * Date: 2017/12/26
+ * Time: 13:15
  */
 
-// todo autoload
+//namespace openyii\framework;
 
-class Loader
+class Autoload
 {
     public static function loadClass($class)
     {
 
         $file = $class . '.php';
-        $file = str_replace("frame",$_SERVER['DOCUMENT_ROOT'] ."\..",$file);
+        $file = str_replace("openyii",$_SERVER['DOCUMENT_ROOT'] ."\..",$file);
+
         if (is_file($file)) {
             require_once($file);
         }
