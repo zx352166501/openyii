@@ -5,7 +5,7 @@
  * Date: 2017/12/20
  * Time: 9:27
  */
-namespace frame\CModel;
+namespace frame\framework;
 
 use PDO;
 
@@ -24,7 +24,6 @@ class CModel
 
     }
 
-
     /**
      * 静态方法用于创建它本身的静态私有对象
      * @return CWebApplication
@@ -34,11 +33,12 @@ class CModel
         if(self::$_app == null){
             self::$_app = new CModel();
         }
+
         return self::$_app;
 
     }
 
-    public static function app(){
+    private static function app(){
         return self::$_app;
     }
 

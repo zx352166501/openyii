@@ -6,7 +6,7 @@
  * Time: 15:13
  */
 
-namespace frame\CWebApplication;
+namespace frame\framework;
 use frame\modules\controllers;
 
 class CWebApplication
@@ -93,8 +93,6 @@ class CWebApplication
                 }else{
                     $class ->$functionName();
                 }
-
-
             }
 
         }else{

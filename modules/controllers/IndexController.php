@@ -9,10 +9,9 @@
 
 namespace frame\modules\controllers;
 
-require $_SERVER['DOCUMENT_ROOT']."/../modules/models/Article.php";
-
-use frame\CController\CController;
+use frame\framework\CController;
 use frame\modules\models\Article;
+use frame\modules\models\IndexModels;
 
 class IndexController extends CController
 {
@@ -24,6 +23,10 @@ class IndexController extends CController
 
         $article = new Article();
         $findRes = $article ->find();
+
+        $indexModelsRes = new IndexModels();
+        $indexModelsRes ->test();
+
         return $this ->render('index/index',array('result'=>$findRes));
 
     }

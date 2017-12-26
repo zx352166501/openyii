@@ -5,7 +5,7 @@
  * Date: 2017/12/18
  * Time: 9:58
  */
-namespace frame\CController;
+namespace frame\framework;
 
 class CController {
 

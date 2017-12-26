@@ -7,8 +7,7 @@
  */
 namespace frame\modules\models;
 
-require $_SERVER['DOCUMENT_ROOT']."/../framework/CModel.php";
-use frame\CModel\CModel;
+use frame\framework\CModel;
 
 class Article extends CModel
 {
