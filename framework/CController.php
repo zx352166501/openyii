@@ -5,6 +5,7 @@
  * Date: 2017/12/18
  * Time: 9:58
  */
+namespace openyii\framework;
 
 class CController {
 
@@ -27,9 +28,9 @@ class CController {
             extract($data,EXTR_PREFIX_SAME,'data');
 
             // todo 新增头部信息
-            require $_SERVER['DOCUMENT_ROOT'].'/modules/views/layouts/'.$this->layouts."/header.php";
+            require __DIR__.'/../modules/views/layouts/'.$this->layouts."/header.php";
             $this ->renderPartical($viewName,$data);
-            return require $_SERVER['DOCUMENT_ROOT'].'/modules/views/layouts/'.$this->layouts."/footer.php";
+            return require __DIR__.'/../modules/views/layouts/'.$this->layouts."/footer.php";
 
         }
 
@@ -38,7 +39,7 @@ class CController {
     public function renderOld($viewName,$data){
         // 跳转不关联layouts
         extract($data,EXTR_PREFIX_SAME,'data');
-        return require $_SERVER['DOCUMENT_ROOT'].'/modules/views/'.$viewName.".php";   // 包含试图文件
+        return require __DIR__.'/modules/views/'.$viewName.".php";   // 包含试图文件
     }
 
     /**
@@ -50,7 +51,7 @@ class CController {
     public function renderPartical($viewName,$data){
 
         extract($data,EXTR_PREFIX_SAME,'data');  // 将data变为变量形式
-        return require $_SERVER['DOCUMENT_ROOT'].'/modules/views/'.$viewName.".php";   // 包含试图文件
+        return require __DIR__.'/../modules/views/'.$viewName.".php";   // 包含试图文件
 
     }
 

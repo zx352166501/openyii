@@ -6,13 +6,16 @@
  * Time: 10:04
  */
 
-//require $_SERVER['DOCUMENT_ROOT']."/framework/CController.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/models/Article.php";
 
+namespace openyii\modules\controllers;
+
+use openyii\framework\CController;
+use openyii\modules\models\Article;
+use openyii\modules\models\IndexModels;
 
 class IndexController extends CController
 {
-     public $layouts = 'main';
+     public $layouts = "main";
     /**
      * 首页
      */
@@ -20,6 +23,10 @@ class IndexController extends CController
 
         $article = new Article();
         $findRes = $article ->find();
+
+        $indexModelsRes = new IndexModels();
+        $indexModelsRes ->test();
+
         return $this ->render('index/index',array('result'=>$findRes));
 
     }

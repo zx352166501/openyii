@@ -5,7 +5,9 @@
  * Date: 2017/12/20
  * Time: 9:27
  */
+namespace openyii\framework;
 
+use PDO;
 
 class CModel
 {
@@ -14,14 +16,13 @@ class CModel
 
     public  function __construct(){
         //获取配置文件
-        $config = require $_SERVER['DOCUMENT_ROOT']."/config/db.php";
+        $config = require __DIR__."/../config/db.php";
 
         foreach ($config as $key =>$val){
             $this ->$key = $val;
         }
 
     }
-
 
     /**
      * 静态方法用于创建它本身的静态私有对象
@@ -32,11 +33,12 @@ class CModel
         if(self::$_app == null){
             self::$_app = new CModel();
         }
+
         return self::$_app;
 
     }
 
-    public static function app(){
+    private static function app(){
         return self::$_app;
     }
 

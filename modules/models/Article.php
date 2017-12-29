@@ -5,11 +5,13 @@
  * Date: 2017/12/18
  * Time: 10:05
  */
-require $_SERVER['DOCUMENT_ROOT'] . "/framework/CModel.php";
+namespace openyii\modules\models;
+
+use openyii\framework\CModel;
 
 class Article extends CModel
 {
-    private static $model;
+    public static $model;
 
     public function __construct()
     {
