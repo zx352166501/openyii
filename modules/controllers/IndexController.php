@@ -21,6 +21,7 @@ class IndexController extends CController
      */
     public function actionIndex(){
 
+        echo '土人';die;
         $article = new Article();
         $findRes = $article ->find();
 
