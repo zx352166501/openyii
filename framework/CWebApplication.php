@@ -8,6 +8,9 @@
 
 namespace openyii\framework;
 use openyii\modules\controllers;
+use openyii\framework\CRequest;
+use openyii\framework\base;
+
 
 class CWebApplication
 {
@@ -49,11 +52,14 @@ class CWebApplication
      */
     public function run(){
 
-        if(!empty($_GET['r'])){
+        $conifg = self::$_app;
 
-            $route = $_GET['r'];
-            self::commonSite($route);
+        CRequest::init();
 
+        base::$app->request = CRequest::$queryParams;
+
+        if( CRequest::$route ){
+            self::commonSite(CRequest::$route);
         }else{
             $this::defaultSite();
         }
