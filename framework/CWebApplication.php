@@ -52,11 +52,16 @@ class CWebApplication
      */
     public function run(){
 
-        $conifg = self::$_app;
+        $config = self::$_app;
 
         CRequest::init();
 
         base::$app->request = CRequest::$queryParams;
+
+        if( isset($config->db) ){
+          new Connection( $config->db );
+        }
+
 
         if( CRequest::$route ){
             self::commonSite(CRequest::$route);
