@@ -56,12 +56,12 @@ class CWebApplication
 
         CRequest::init();
 
+        base::$app = new \stdClass();
         base::$app->request = CRequest::$queryParams;
 
         if( isset($config->db) ){
           new Connection( $config->db );
         }
-
 
         if( CRequest::$route ){
             self::commonSite(CRequest::$route);
