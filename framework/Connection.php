@@ -32,7 +32,7 @@ class Connection
         }
     }
 
-    public function insert($table, $data)
+    public static function insert($table, $data)
     {
         $sql = sprintf(
             'insert into %s(%s) values(%s)',
@@ -50,7 +50,7 @@ class Connection
         return $result;
     }
 
-    public function update($table,$data,$condition){
+    public static function update($table,$data,$condition){
 
         $str = array_reduce($data,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
         $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = \'{$value}\',";return $r; });
@@ -68,7 +68,7 @@ class Connection
         return $result;
     }
 
-    public function delete($table,$condition){
+    public static function delete($table,$condition){
 
         $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
         $where = substr($where,0,-1);
