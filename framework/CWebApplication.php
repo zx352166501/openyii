@@ -54,13 +54,15 @@ class CWebApplication
 
         $config = self::$_app;
 
-        CRequest::init();
+        CRequest::init( $config );
 
         base::$app = new \stdClass();
         base::$app->request = CRequest::$queryParams;
+        base::$app->request->method = CRequest::$method;
 
         if( isset($config->db) ){
-          new Connection( $config->db );
+            $Connection = new Connection( $config->db );
+            base::$app->db = $Connection::$pdo;
         }
 
         if( CRequest::$route ){

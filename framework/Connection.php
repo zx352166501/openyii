@@ -11,7 +11,7 @@ namespace openyii\framework;
 
 class Connection
 {
-    protected  $pdo;    //操作句柄
+    public static $pdo;    //操作句柄
 
     public function __construct( $conifg )
     {
@@ -24,7 +24,9 @@ class Connection
 
     protected function init( $dsn, $username, $password, $option){
         try {
-            $this->pdo = new \PDO($dsn, $username, $password,array(\PDO::ATTR_PERSISTENT => true));
+
+            self::$pdo = new \PDO($dsn, $username, $password,array(\PDO::ATTR_PERSISTENT => true));
+
         } catch ( \PDOException $e ) {
             die($e -> getMessage ());
         }
@@ -40,7 +42,7 @@ class Connection
         );
 
         try {
-            $statement = $this->pdo->prepare($sql);
+            $statement =  self::$pdo->prepare($sql);
             $result = $statement->execute($data);
         } catch (\Exception $e) {
             throw new  \Exception($e -> getMessage ());
@@ -58,7 +60,7 @@ class Connection
         $sql = "UPDATE {$table} SET {$str} WHERE {$where}";
 
         try {
-            $statement = $this->pdo->prepare($sql);
+            $statement =  self::$pdo->prepare($sql);
             $result = $statement->execute($data);
         } catch (\Exception $e) {
             throw new  \Exception($e -> getMessage ());
@@ -74,7 +76,7 @@ class Connection
         $sql = "DELETE FROM {$table}  WHERE {$where}";
 
         try {
-            $statement = $this->pdo->prepare($sql);
+            $statement =  self::$pdo->prepare($sql);
             $result = $statement->execute($condition);
         } catch (\Exception $e) {
             throw new  \Exception($e -> getMessage ());
@@ -82,15 +84,25 @@ class Connection
         return $result;
     }
 
-    public function select( $table,$cols = array(), $condition=array()){
+    public static function  select( $table,$cols = array(), $condition=array()){
         $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
-        $where = substr($where,0,-1);
+        $where = $where?substr($where,0,-1):'';
 
-        $sql = "SELECT {$cols} FROM {$table}  WHERE {$where}";
+        if( is_array($cols) ){
+            $cols = implode(',',$cols);
+        }
+
+        $cols = $cols?:'*';
+        $where = $where?' WHERE {$where}':'';
+        $sql = "SELECT {$cols} FROM {$table}  {$where}";
 
         try {
-            $statement = $this->pdo->prepare($sql);
-            $result = $statement->execute($condition);
+            if( $condition ){
+                $statement =  self::$pdo->prepare($sql);
+                $result = $statement->execute($condition);
+            }else{
+                $result = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
+            }
         } catch (\Exception $e) {
             throw new  \Exception($e -> getMessage ());
         }

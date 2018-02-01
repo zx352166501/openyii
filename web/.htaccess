@@ -1,0 +1,7 @@
+RewriteEngine on    #rewriteengine为重写引擎开关on为开启off为关闭
+
+#如果不是真实存在的目录或文件，则分发请求给index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)$ index.php
+#RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]

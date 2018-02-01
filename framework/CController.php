@@ -7,6 +7,8 @@
  */
 namespace openyii\framework;
 
+use openyii\modules\models\UserModel;
+
 class CController {
 
     public $layouts;
@@ -75,6 +77,23 @@ class CController {
 
     }
 
+    public function actionList(){
+        $user = new UserModel();
 
+        $result = $user->lists();
+        return self::echoJson('200','success',$result);
+    }
+
+    public function echoJson($code,$msg,$data){
+
+        $dd = [
+            'code'   =>   $code,
+            'msg'   =>   $msg,
+            'data'   =>   $data,
+        ];
+
+        $result = json_encode($dd);
+        echo $result;
+    }
 
 }
