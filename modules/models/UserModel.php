@@ -10,7 +10,6 @@ namespace openyii\modules\models;
 
 
 use openyii\framework\BaseModel;
-use openyii\framework\Connection;
 
 class UserModel extends BaseModel
 {
