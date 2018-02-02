@@ -4,4 +4,3 @@ RewriteEngine on    #rewriteengine为重写引擎开关on为开启off为关闭
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*)$ index.php
-#RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]

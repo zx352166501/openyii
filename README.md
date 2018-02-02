@@ -19,6 +19,17 @@
 
 ###Restful API
 
+写在前面，restful 对url重写要求有点高，需要服务器做些处理，框架使用的是apache服务器，需要在web下添加 .htacess 文件，内容如下：
+```shell
+RewriteEngine on    #rewriteengine为重写引擎开关on为开启off为关闭
+
+#如果不是真实存在的目录或文件，则分发请求给index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)$ index.php
+```
+其实就是将复杂的url，如localhost/user/10 分发给index.php处理；Nginx处理，需要在
+
 config.php 添加 
 ```php
  'rules' => [
