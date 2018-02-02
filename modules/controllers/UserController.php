@@ -15,7 +15,10 @@ class UserController extends CController
 {
     public $modelClass = 'openyii\modules\models\UserModel';   //定义user操作model
 
+    public function actionIndex(){
 
+        echo 'Hello World!';die;
+    }
 
 
 }

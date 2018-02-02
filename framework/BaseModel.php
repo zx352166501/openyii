@@ -11,6 +11,7 @@ namespace openyii\framework;
 
 class BaseModel
 {
+    public $cols;    //定义显示字段，子类可重载，诸如查询用户 隐藏用户密码
 
     /**
      *
@@ -18,8 +19,7 @@ class BaseModel
      */
     public function lists(){
         $table = static::tableName();
-
-        $cols = array();
+        $cols = $this->cols?:array();
         $method = base::$app->request->method;
         $condition = base::$app->request->$method ;
         return Connection::select($table,$cols,$condition);
@@ -36,7 +36,7 @@ class BaseModel
         if( empty($condition['id']) ){
             return false;
         }
-        $cols = array();
+        $cols = $this->cols?:array();
         return Connection::select($table,$cols,$condition);
     }
 

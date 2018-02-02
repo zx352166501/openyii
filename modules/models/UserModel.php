@@ -14,11 +14,14 @@ use openyii\framework\Connection;
 
 class UserModel extends BaseModel
 {
+    public $cols = array();   //子类定义显示字段，如'id','username'
+
     public static function tableName(){
 
         return 'user';
 
     }
+
 
 
 
