@@ -7,8 +7,6 @@
  */
 namespace openyii\framework;
 
-use openyii\modules\models\UserModel;
-
 class CController {
 
     public $layouts;
