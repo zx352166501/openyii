@@ -95,6 +95,9 @@ class CController {
             $model_new = new $model;
 
             $result = $model_new->detail();
+            if( empty($result) ){
+                $this->http_output(404);
+            }
         }catch(\Exception $e){
             $msg = $e->getMessage();
             return self::echoJson('500',$msg);
@@ -211,6 +214,12 @@ class CController {
         array_walk_recursive($array, $_urlencode);
         $json = json_encode($array);
         return urldecode($json);
+    }
+
+    //返回http状态码
+    public function http_output( $code ){
+        Header("HTTP/1.1 {$code} Not Found");
+        die;
     }
 
 }
