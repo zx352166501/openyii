@@ -28,7 +28,15 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*)$ index.php
 ```
-其实就是将复杂的url，如localhost/user/10 分发给index.php处理；Nginx处理，需要在
+其实就是将复杂的url，如localhost/user/10 分发给index.php处理；Nginx处理，需要在nginx.conf 中添加
+```$xslt
+   location / {
+       ...
+      if (!-e $request_filename){
+       rewrite ^/(.*) /index.php last;
+      }
+    }
+```
 
 config.php 添加 
 ```php
