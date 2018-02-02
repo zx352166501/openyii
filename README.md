@@ -18,6 +18,7 @@
     - index.php  入口
 
 ###Restful API
+
 config.php 添加 
 ```php
  'rules' => [
@@ -29,7 +30,7 @@ config.php 添加
             ],
         ],
 ```
-controllerId 代表控制器id，actionId 代表动作Id，urlId 代表url代表actionId的参数，如：
+controllerId 代表控制器id，actionId 代表动作Id，urlId 代表url中表示actionId的参数，如：
 ```php
  ...
         'user' => [
