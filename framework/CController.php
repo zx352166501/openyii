@@ -78,20 +78,80 @@ class CController {
     }
 
     public function actionList(){
-        $user = new UserModel();
+       try{
+           $model = $this->modelClass;
+           $model_new = new $model;
 
-        $result = $user->lists();
+           $result = $model_new->lists();
+       }catch(\Exception $e){
+           $msg = $e->getMessage();
+           return self::echoJson('500',$msg);
+       }
+
+        return self::echoJson('200','success',$result);
+    }
+
+    public function actionDetail(){
+        try{
+            $model = $this->modelClass;
+            $model_new = new $model;
+
+            $result = $model_new->detail();
+        }catch(\Exception $e){
+            $msg = $e->getMessage();
+            return self::echoJson('500',$msg);
+        }
+
+        return self::echoJson('200','success',$result);
+    }
+    public function actionCreate(){
+        try{
+            $model = $this->modelClass;
+            $model_new = new $model;
+
+            $result = $model_new->add();
+        }catch(\Exception $e){
+            $msg = $e->getMessage();
+            return self::echoJson('500',$msg);
+        }
+
+        return self::echoJson('200','success',$result);
+    }
+
+    public function actionUpdate(){
+        try{
+            $model = $this->modelClass;
+            $model_new = new $model;
+
+            $result = $model_new->update();
+        }catch(\Exception $e){
+            $msg = $e->getMessage();
+            return self::echoJson('500',$msg);
+        }
+
+        return self::echoJson('200','success',$result);
+    }
+
+    public function actionDelete(){
+        try{
+            $model = $this->modelClass;
+            $model_new = new $model;
+
+            $result = $model_new->delete();
+        }catch(\Exception $e){
+            $msg = $e->getMessage();
+            return self::echoJson('500',$msg);
+        }
+
         return self::echoJson('200','success',$result);
     }
 
     public function echoJson($code,$msg,$data){
-
         $dd = [
             'code'   =>   $code,
             'msg'   =>   $msg,
             'data'   =>   $data,
         ];
-
         $result = json_encode($dd);
         echo $result;
     }

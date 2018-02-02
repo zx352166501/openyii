@@ -44,6 +44,7 @@ class CRequest
          self::$method = $method = strtolower( $_SERVER['REQUEST_METHOD'] );
         if( $method!='get' ){
             self::$queryParams->$method =  file_get_contents("php://input");
+            self::$queryParams->$method =  self::$queryParams->$method?:array();
         }
 
         //如果开启restful Api,则进行路由解析
@@ -64,14 +65,26 @@ class CRequest
                         }
                         break;
                     case 'post':
+                        //接受参数转数组
+                        $d = self::$queryParams->$method;
+                        parse_str ( $d ,  $output );
+                        self::$queryParams->$method = $output;
+
                         $actid = 'create';
                         break;
                     case 'patch':
-                        self::$queryParams->$method += array('id'=>$actid);
+                    case 'put':
+                         self::$queryParams->get['id'] = $actid;
+
+                         //接受参数转数组
+                         $d = self::$queryParams->$method;
+                         parse_str ( $d ,  $output );
+                         self::$queryParams->$method = $output;
+
                         $actid = 'update';
                         break;
                     case 'delete':
-                        self::$queryParams->$method += array('id'=>$actid);
+                        self::$queryParams->get['id'] = $actid;
                         $actid = 'delete';
                         break;
                     default:
@@ -81,7 +94,7 @@ class CRequest
             }
         }
 
-//        print_r(self::$route);die;
+        return true;
     }
 
 /**

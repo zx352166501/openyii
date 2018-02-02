@@ -13,7 +13,7 @@ use openyii\framework\CController;
 
 class UserController extends CController
 {
-    public $modelClass = 'base\models\UserModel';   //定义user操作model
+    public $modelClass = 'openyii\modules\models\UserModel';   //定义user操作model
 
 
 

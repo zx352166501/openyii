@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: mw
+ * User: WalkingSun
  * Date: 2018/1/24
  * Time: 16:18
  */
@@ -51,17 +51,22 @@ class Connection
     }
 
     public static function update($table,$data,$condition){
+        if( !$condition || !$data ) return false;
+        $keys = array_keys($condition);
+        $bindParams = array_map(function($row){  return "{$row} = :{$row}";  },$keys);
+        $where = implode(' AND ',$bindParams);
 
-        $str = array_reduce($data,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
-        $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = \'{$value}\',";return $r; });
-        $str = substr($str,0,-1);
-        $where = substr($where,0,-1);
+        $keys = array_keys($data);
+        $bindParams = array_map(function($row){  return "{$row} = :{$row}";  },$keys);
+        $update = implode(', ',$bindParams);
 
-        $sql = "UPDATE {$table} SET {$str} WHERE {$where}";
+        $where = $where?" WHERE {$where}":'';
+        $sql = "UPDATE {$table} SET {$update} {$where}";
 
         try {
             $statement =  self::$pdo->prepare($sql);
-            $result = $statement->execute($data);
+            $up = array_merge($data,$condition);
+            $result = $statement->execute($up);
         } catch (\Exception $e) {
             throw new  \Exception($e -> getMessage ());
         }
@@ -70,10 +75,13 @@ class Connection
 
     public static function delete($table,$condition){
 
-        $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
-        $where = substr($where,0,-1);
+        $keys = array_keys($condition);
+        $bindParams = array_map(function($row){  return "{$row} = :{$row}";  },$keys);
+        $where = implode(' AND ',$bindParams);
 
-        $sql = "DELETE FROM {$table}  WHERE {$where}";
+        $where = $where?" WHERE {$where}":'';
+
+        $sql = "DELETE FROM {$table} {$where}";
 
         try {
             $statement =  self::$pdo->prepare($sql);
@@ -85,21 +93,26 @@ class Connection
     }
 
     public static function  select( $table,$cols = array(), $condition=array()){
-        $where = array_reduce($condition,function($key,$value){  static $r=''; $r.= "\'{$key}\' = :{$key},";return $r; });
-        $where = $where?substr($where,0,-1):'';
+        $where = '';
+        if( !empty($condition) ){
+            $keys = array_keys($condition);
+            $bindParams = array_map(function($row){  return "{$row} = :{$row}";  },$keys);
+            $where = implode(' AND ',$bindParams);
+        }
 
         if( is_array($cols) ){
             $cols = implode(',',$cols);
         }
 
         $cols = $cols?:'*';
-        $where = $where?' WHERE {$where}':'';
+        $where = $where?" WHERE {$where}":'';
         $sql = "SELECT {$cols} FROM {$table}  {$where}";
 
         try {
             if( $condition ){
                 $statement =  self::$pdo->prepare($sql);
-                $result = $statement->execute($condition);
+                $statement->execute($condition);
+                $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
             }else{
                 $result = self::$pdo->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
             }
