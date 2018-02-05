@@ -28,7 +28,7 @@ class Connection
             self::$pdo = new \PDO($dsn, $username, $password,array(\PDO::ATTR_PERSISTENT => true));
 
         } catch ( \PDOException $e ) {
-            die($e -> getMessage ());
+            throw new  \Exception($e -> getMessage ());
         }
     }
 
