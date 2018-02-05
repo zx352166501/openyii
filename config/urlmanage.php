@@ -14,9 +14,13 @@ return array(
         'user' => [
             'extraPatterns' => [
                 'index' => 'index',   //参数获取id匹配原actionId
-                'login' => 'login'
             ],
         ],
+          'index' => [
+                    'extraPatterns' => [
+                        'index' => 'index',   
+                    ],
+                ],
 
     ]
 );

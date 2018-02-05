@@ -52,8 +52,9 @@ class IndexController extends CController
     }
 
     public function actionError(){
-
-        echo "404!!!";
+        $code = 404;
+        Header("HTTP/1.1 {$code} Not Found");
+        die;
 
     }
 
