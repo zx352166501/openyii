@@ -20,11 +20,20 @@
 与Yii类似，以 base::$app 来获取相应属性及操作对象，如：
 ```php
 base::$app->method   获取请求方式
-base::$app->get   获取get方式参数
-base::$app->put   获取put方式参数
-base::$app->db    获取数据库操作对象 【这里没做太多处理，就是pdo对象，后期优化】
-base::$app->params    获取全局定义参数
+base::$app->get      获取get方式参数
+base::$app->put      获取put方式参数
+base::$app->db       获取数据库操作对象 【这里没做太多处理，就是pdo对象，后期优化】
+base::$app->params   获取全局定义参数
 ```
+
+framework目录：
+```php
+CWebApplication  应用主体
+Connection.php   操作db基类，封装方法 insert、update、select、delete，复杂方法待补充
+BaseModel.php    基础Model 基类
+CRequest.php     请求解析
+```
+
 ###Restful API
 
 写在前面，restful 对url重写要求有点高，需要服务器做些处理，框架使用的是apache服务器，需要在web下添加 .htacess 文件，内容如下：

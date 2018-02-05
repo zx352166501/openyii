@@ -11,7 +11,6 @@ namespace openyii\framework;
 
 class CRequest
 {
-//    private static $method = array( 'get','post','put','head','options','patch','delete' );
     public static $queryParams;   //参数
     public static $route;   //路由
     public static $method;   //请求方式
