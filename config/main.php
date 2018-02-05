@@ -16,5 +16,6 @@ return [
 
     'db' => require(__DIR__ . '/../config/db.php'),
     'urlManager' => require(__DIR__ . '/urlmanage.php'),
+    'params' => require(__DIR__ . '/params.php'),
 
 ];

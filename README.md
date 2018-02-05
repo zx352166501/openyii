@@ -1,11 +1,11 @@
 # openyii
 参考yii开发的简易框架，基于MVC设计，结构清晰，有兴趣的人可以加入我们。
 
-
 ##目录结构
 - config   配置项
    - db.php 数据库配置
    - main.php 主配置项
+   - params.php 全局参数设置项
    - urlmanage Restful 配置
 - framework  框架底层
    - lib 外部类库
@@ -17,6 +17,14 @@
 - web
     - index.php  入口
 
+与Yii类似，以 base::$app 来获取相应属性及操作对象，如：
+```php
+base::$app->method   获取请求方式
+base::$app->get   获取get方式参数
+base::$app->put   获取put方式参数
+base::$app->db    获取数据库操作对象 【这里没做太多处理，就是pdo对象，后期优化】
+base::$app->params    获取全局定义参数
+```
 ###Restful API
 
 写在前面，restful 对url重写要求有点高，需要服务器做些处理，框架使用的是apache服务器，需要在web下添加 .htacess 文件，内容如下：
