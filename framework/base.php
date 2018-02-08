@@ -11,7 +11,7 @@ namespace openyii\framework;
 
 class base
 {
-  public static $app;
+    public static $app;
 
 
 }

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'dsn' => 'mysql:host=localhost;dbname=school',
+    'dsn' => 'mysql:host=localhost;dbname=test',
     'username' => 'root',
-    'password' => 'root',
+    'password' => '',
     'charset' => 'utf8',
 ];
