@@ -14,4 +14,8 @@ return [
 
     "name" =>"my Application",
 
+    'db' => require(__DIR__ . '/../config/db.php'),
+//    'urlManager' => require(__DIR__ . '/urlmanage.php'),    //启用restful
+    'params' => require(__DIR__ . '/params.php'),
+
 ];

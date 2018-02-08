@@ -15,6 +15,7 @@ class Autoload
 
         $file = $class . '.php';
         $file = str_replace("openyii",__DIR__ ."\..",$file);
+        $file = str_replace("\\","/",$file);           //linux系统不支持 ‘\’
 
         if (is_file($file)) {
             require_once($file);
